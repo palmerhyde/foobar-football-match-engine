@@ -64,6 +64,15 @@ describe('Move', function(){
         });
     });
 
+    describe(".play with player 1 and 2 attribute undefined", function() {
+        it("should result in player1 winning", function(){
+            moveCard.player1Attribute = "foobar";
+            moveCard.player2Attribute = "foobar";
+            var result = move.Play(playerCard1, playerCard2, moveCard);
+            result.should.equal("draw");
+        });
+    });
+
     describe(".play with player 2 attribute undefined", function() {
         it("should result in player1 winning", function(){
             playerCard2[moveCard.player2Attribute] = 10;
