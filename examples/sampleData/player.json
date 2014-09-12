@@ -1,0 +1,14 @@
+[
+    {
+        "_id" : "123",
+        "name" : "John Terry",
+        "passing" : 67,
+        "interception" : 45
+    },
+    {
+        "_id" : "456",
+        "name" : "Steve Gerrard",
+        "passing" : 82,
+        "interception" : 43
+    }
+]
