@@ -1,0 +1,19 @@
+{
+    "name": "FooBarFootballGameRulesEngine",
+    "description": "FooBar Football game rules engine",
+    "version": "0.0.1",
+    "private": true,
+    "main": "server.js",
+    "dependencies": {
+        "firebase": "*",
+        "q" : "*",
+        "should": "*",
+        "istanbul" : "*",
+        "mocha-istanbul": "*",
+        "mocha": "*"
+    },
+    "scripts" : {
+        "test" : "mocha",
+        "test" : "istanbul cover node_modules/mocha/bin/_mocha -- --recursive"
+    }
+}

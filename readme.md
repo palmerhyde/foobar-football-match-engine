@@ -14,6 +14,7 @@
 * Long Passing
 * Long Shots
 * Marking
+* Pace
 * Penalties
 * Short Passing
 * Shot Power
@@ -23,21 +24,32 @@
 
 ### Physical
 
-* Acceleration
-* Agility
-* Balance
-* Jumping
-* Reactions
-* Sprint Speed
-* Stamina
-* Strength
+* Acceleration (pace)
+* Agility (x)
+* Balance (x)
+* Jumping (heading)
+* Reactions (?)
+* Sprint Speed (pace)
+* Stamina (?)
+* Strength (?)
 
 ###Mental
 
-* Aggression
-* Positioning
-* Interceptions
-* Vision
+* Aggression (yes)
+* Positioning (yes)
+* Interceptions (yes)
+* Vision (yes)
+
+# Kampion
+* Speed
+* Power
+* One on One / Tackling
+* Temper
+* GK skill / Skill
+* Aerial / Heading
+* Passing 
+* Kicking
+
 
 ##Rules
 
