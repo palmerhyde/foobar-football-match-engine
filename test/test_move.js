@@ -7,42 +7,46 @@ describe('Move', function(){
 
     beforeEach(function(){
         playerCard1 = {
-            "_id" : "123",
-            "name" : "John Terry",
+            "_id" : 123,
+            "firstName" : "John",
+            "surname" : "Terry",
+            "position" : "Defender",
             "passing" : 67,
             "interception" : 45
         };
 
         playerCard2 = {
-            "_id" : "456",
-            "name" : "Steve Gerrard",
+            "_id" : 456,
+            "firstName" : "Steve",
+            "surname" : "Gerrard",
+            "position" : "Midfielder",
             "passing" : 82,
             "interception" : 43
         };
 
         moveCard = {
-            "_id" : "123",
+            "_id" : 123,
             "name" : "short pass",
-            "player1Attribute" : "passing",
-            "player2Attribute" : "interception"
+            "player1Attribute" : "Passing",
+            "player2Attribute" : "Interception"
         };
     })
 
     describe(".play with empty player1 param", function() {
-        it("should throw an exception for missing player1 parameter", function(){
+        it("should throw an exception for invalid player1 parameter", function(){
             (function(){
                 playerCard1 = undefined;
                 move.Play(playerCard1, playerCard2, moveCard);
-            }).should.throw('missing player1 parameter');
+            }).should.throw('player1 not valid');
         });
     });
 
     describe(".play with empty player2 param", function() {
-        it("should throw an exception for missing player2 parameter", function(){
+        it("should throw an exception for invalid player2 parameter", function(){
             (function(){
                 playerCard2 = undefined;
                 move.Play(playerCard1, playerCard2, moveCard);
-            }).should.throw('missing player2 parameter');
+            }).should.throw('player2 not valid');
         });
     });
 
@@ -51,34 +55,7 @@ describe('Move', function(){
             (function(){
                 moveCard = undefined;
                 move.Play(playerCard1, playerCard2, moveCard);
-            }).should.throw('missing move parameter');
-        });
-    });
-
-    describe(".play with player 2 attribute undefined", function() {
-        it("should result in player1 winning", function(){
-            playerCard1[moveCard.player1Attribute] = 10;
-            moveCard.player2Attribute = "foobar";
-            var result = move.Play(playerCard1, playerCard2, moveCard);
-            result.should.equal("player1");
-        });
-    });
-
-    describe(".play with player 1 and 2 attribute undefined", function() {
-        it("should result in player1 winning", function(){
-            moveCard.player1Attribute = "foobar";
-            moveCard.player2Attribute = "foobar";
-            var result = move.Play(playerCard1, playerCard2, moveCard);
-            result.should.equal("draw");
-        });
-    });
-
-    describe(".play with player 2 attribute undefined", function() {
-        it("should result in player1 winning", function(){
-            playerCard2[moveCard.player2Attribute] = 10;
-            moveCard.player1Attribute = "foobar";
-            var result = move.Play(playerCard1, playerCard2, moveCard);
-            result.should.equal("player2");
+            }).should.throw('move not valid');
         });
     });
 

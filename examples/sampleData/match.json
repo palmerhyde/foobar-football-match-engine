@@ -1,0 +1,26 @@
+{
+    "MoveResults" : [],
+    "MoveDeck" : [],
+    "AwayTeam" : {
+        "Deck" : [],
+        "PlayerHand" : [],
+        "SupportHand" : [],
+        "DiscardPile" : [],
+        "Score" : "0",
+        "TeamName" : "The Mighty Reds",
+        "UserId" : "1"
+    },
+    "HomeTeam" : {
+        "Deck" : [],
+        "PlayerHand" : [],
+        "SupportHand" : [],
+        "DiscardPile" : [],
+        "Score" : "0",
+        "TeamName" : "PalmerHyde FC",
+        "UserId" : "0"
+    },
+    "Id" : 666,
+    "State" : "Playing",
+    "Turn" : 4,
+    "WhosTurnIsIt" : "0"
+}

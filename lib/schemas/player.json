@@ -1,0 +1,33 @@
+{
+    "$schema" : "http://json-schema.org/draft-04/schema#",
+    "title": "Player",
+    "description": "A player card within the game.",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "description": "The unique identifier for the player",
+            "type": "integer"
+        },
+        "firstName": {
+            "description": "The players first name.",
+            "type": "string"
+        },
+        "surname": {
+            "description": "The players surname.",
+            "type": "string"
+        },
+        "position": {
+            "description": "The players position",
+            "type": "string", "enum": [ "Goalkeeper", "Defender", "Midfielder", "Attacker" ]
+        },
+        "passing": {
+            "description": "The passing ability of a player",
+            "type": "integer"
+        },
+        "interception": {
+            "description": "The interception ability of a player",
+            "type": "integer"
+        }
+    },
+    "required": ["_id", "firstName", "surname", "position", "passing", "interception"]
+}

@@ -1,0 +1,25 @@
+{
+    "$schema" : "http://json-schema.org/draft-04/schema#",
+    "title": "Move",
+    "description": "A move card within the game.",
+    "type": "object",
+    "properties": {
+    "_id": {
+        "description": "The unique identifier for the player",
+            "type": "integer"
+    },
+    "name": {
+        "description": "The name of the move.",
+            "type": "string"
+    },
+    "player1Attribute": {
+        "description": "The attribute player 1 will use for this move",
+            "type": "string", "enum": [ "Passing", "Interception" ]
+    },
+        "player2Attribute": {
+            "description": "The attribute player 2 will use for this move",
+            "type": "string", "enum": [ "Passing", "Interception" ]
+        }
+},
+    "required": ["_id", "name", "player1Attribute", "player2Attribute"]
+}

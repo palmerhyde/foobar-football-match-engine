@@ -1,0 +1,17 @@
+{
+    "$schema" : "http://json-schema.org/draft-04/schema#",
+    "title": "Move",
+    "description": "A match between two users.",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "description": "The unique identifier for a match",
+            "type": "integer"
+        },
+        "turn": {
+            "description": "The current turn of the match",
+            "type": "integer"
+        }
+    },
+    "required": ["_id", "turn"]
+}
