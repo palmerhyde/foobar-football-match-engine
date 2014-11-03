@@ -5,13 +5,17 @@
     "type": "object",
     "properties": {
         "_id": {
-            "description": "The unique identifier for a match",
+            "description": "The unique identifier for a match.",
             "type": "integer"
         },
         "turn": {
-            "description": "The current turn of the match",
+            "description": "The current turn of the match.",
+            "type": "integer"
+        },
+        "currentTurnUserId": {
+            "description": "The id of the user whose turn it currently is.",
             "type": "integer"
         }
     },
-    "required": ["_id", "turn"]
+    "required": ["_id", "turn", "currentTurnUserId"]
 }

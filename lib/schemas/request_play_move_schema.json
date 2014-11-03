@@ -1,0 +1,21 @@
+{
+    "$schema" : "http://json-schema.org/draft-04/schema#",
+    "title": "Request Play Move",
+    "description": "An incoming request for the play move game action.",
+    "type": "object",
+    "properties": {
+        "userId": {
+            "description": "The id of the user making the request.",
+            "type": "integer"
+        },
+        "matchId": {
+            "description": "The id of the match associated with the request.",
+            "type": "integer"
+        },
+        "cardId": {
+            "description": "The id of the player cards associated with the request.",
+            "type": "integer"
+        }
+    },
+    "required": ["userId", "matchId", "cardId"]
+}

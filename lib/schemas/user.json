@@ -1,0 +1,25 @@
+{
+    "$schema" : "http://json-schema.org/draft-04/schema#",
+    "title": "User",
+    "description": "A FooBar football user.",
+    "type": "object",
+    "properties": {
+        "_id": {
+            "description": "The unique identifier for a user.",
+            "type": "integer"
+        },
+        "firstName": {
+            "description": "The users first name.",
+            "type": "string"
+        },
+        "surname": {
+            "description": "The users surname.",
+            "type": "string"
+        },
+        "email": {
+            "description": "The users email address.",
+            "type": "string"
+        }
+    },
+    "required": ["_id", "firstName", "surname", "email"]
+}

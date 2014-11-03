@@ -7,10 +7,11 @@ var match;
 describe('Match Validation', function(){
 
     beforeEach(function(){
-        match = {
-            "_id" : 123,
-            "turn" : 1
-        };
+        var name = require.resolve('./testData/validMatch');
+        if(name) {
+            delete require.cache[name];
+        }
+        match = require("./testData/validMatch");
     });
 
     describe("match with missing _id", function() {
@@ -40,6 +41,22 @@ describe('Match Validation', function(){
     describe("match with incorrect type turn", function() {
         it("should result in an error message", function(){
             match.turn = "1";
+            var result = validator.validate(match, schema);
+            validator.error.message.should.equal("invalid type: string (expected integer)");
+        });
+    });
+
+    describe("match with missing currentTurnUserId", function() {
+        it("should result in an error message", function(){
+            match.currentTurnUserId = undefined;
+            var result = validator.validate(match, schema);
+            validator.error.message.should.equal("Missing required property: currentTurnUserId");
+        });
+    });
+
+    describe("match with incorrect type currentTurnUserId", function() {
+        it("should result in an error message", function(){
+            match.currentTurnUserId = "1";
             var result = validator.validate(match, schema);
             validator.error.message.should.equal("invalid type: string (expected integer)");
         });
