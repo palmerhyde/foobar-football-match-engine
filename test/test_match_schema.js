@@ -1,5 +1,6 @@
 var should = require("should");
 var schema = require("../lib/schemas/match");
+var moveSchema = require("../lib/schemas/move");
 var validator = require("tv4");
 
 var match;
@@ -12,6 +13,7 @@ describe('Match Validation', function(){
             delete require.cache[name];
         }
         match = require("./testData/validMatch");
+        validator.addSchema("move.json", moveSchema);
     });
 
     describe("match with missing _id", function() {
@@ -59,6 +61,22 @@ describe('Match Validation', function(){
             match.currentTurnUserId = "1";
             var result = validator.validate(match, schema);
             validator.error.message.should.equal("invalid type: string (expected integer)");
+        });
+    });
+
+    describe("match with missing moves", function() {
+        it("should result in an error message", function(){
+            match.moves = undefined;
+            var result = validator.validate(match, schema);
+            validator.error.message.should.equal("Missing required property: moves");
+        });
+    });
+
+    describe("match with incorrect type moves", function() {
+        it("should result in an error message", function(){
+            match.moves = "Hello world";
+            var result = validator.validate(match, schema);
+            validator.error.message.should.equal("invalid type: string (expected array)");
         });
     });
 

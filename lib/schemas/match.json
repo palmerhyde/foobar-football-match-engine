@@ -15,7 +15,20 @@
         "currentTurnUserId": {
             "description": "The id of the user whose turn it currently is.",
             "type": "integer"
+        },
+        "moves": {
+            "description": "An array of moves that make up the match.",
+            "type": "array",
+            "items": {"$ref":"move.json"}
+        },
+        "player1": {
+            "description": "A user object representing player 1.",
+            "type": "integer"
+        },
+        "player2": {
+            "description": "A user object representing player 2.",
+            "type": "integer"
         }
     },
-    "required": ["_id", "turn", "currentTurnUserId"]
+    "required": ["_id", "turn", "currentTurnUserId", "moves"]
 }
