@@ -6,3 +6,6 @@ CCG / LCG card game based upon football. Inspired by Magic the Gathering, Footba
 
 Read more at the WIKI.
 https://github.com/palmerhyde/FooBar-Football-Match-Engine/wiki
+
+Trello board
+https://trello.com/b/roo9UE8n/foobar-football
