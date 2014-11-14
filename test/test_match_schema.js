@@ -1,6 +1,7 @@
 var should = require("should");
 var schema = require("../lib/schemas/match");
 var moveSchema = require("../lib/schemas/move");
+var userSchema = require("../lib/schemas/user");
 var validator = require("tv4");
 
 var match;
@@ -14,6 +15,7 @@ describe('Match Validation', function(){
         }
         match = require("./testData/validMatch");
         validator.addSchema("move.json", moveSchema);
+        validator.addSchema("user.json", userSchema);
     });
 
     describe("match with missing _id", function() {

@@ -23,12 +23,14 @@
         },
         "player1": {
             "description": "A user object representing player 1.",
-            "type": "integer"
+            "type": "object",
+            "$ref":"user.json"
         },
         "player2": {
             "description": "A user object representing player 2.",
-            "type": "integer"
+            "type": "object",
+            "$ref":"user.json"
         }
     },
-    "required": ["_id", "turn", "currentTurnUserId", "moves"]
+    "required": ["_id", "turn", "currentTurnUserId", "moves", "player1", "player2"]
 }
