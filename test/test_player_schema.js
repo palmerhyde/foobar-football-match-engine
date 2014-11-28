@@ -6,14 +6,33 @@ var playerCard;
 
 describe('Player Validation', function(){
 
+    // TODO: get valid player card
     beforeEach(function(){
         playerCard = {
             "_id" : 123,
             "firstName" : "John",
-            "surname" : "Terry",
+            "lastName" : "Terry",
             "position" : "Defender",
-            "passing" : 67,
-            "interception" : 45
+            "crossing" : 10,
+            "dribbling" : 10,
+            "finishing" : 10,
+            "gkdiving" : 10,
+            "gkhandling" :10,
+            "gkpositioning" : 10,
+            "gkreflexes" : 10,
+            "heading" : 10,
+            "interceptions" : 45,
+            "longpassing" : 10,
+            "longshots" : 10,
+            "marking" :10,
+            "positioning" : 10,
+            "shortpassing" : 67,
+            "slidingtackle" : 10,
+            "shotpower" : 10,
+            "standingtackle" : 10,
+            "strength": 10,
+            "vision" : 10,
+            "volleys" : 10
         };
     });
 
@@ -43,9 +62,9 @@ describe('Player Validation', function(){
 
     describe("player with missing surname", function() {
         it("should result in an error message", function(){
-            playerCard.surname = undefined;
+            playerCard.lastName = undefined;
             var result = validator.validate(playerCard, schema);
-            validator.error.message.should.equal("Missing required property: surname");
+            validator.error.message.should.equal("Missing required property: lastName");
         });
     });
 
@@ -67,17 +86,17 @@ describe('Player Validation', function(){
 
     describe("player with missing passing", function() {
         it("should result in an error message", function(){
-            playerCard.passing = undefined;
+            playerCard.shortpassing = undefined;
             var result = validator.validate(playerCard, schema);
-            validator.error.message.should.equal("Missing required property: passing");
+            validator.error.message.should.equal("Missing required property: shortpassing");
         });
     });
 
     describe("player with missing interception", function() {
         it("should result in an error message", function(){
-            playerCard.interception = undefined;
+            playerCard.interceptions = undefined;
             var result = validator.validate(playerCard, schema);
-            validator.error.message.should.equal("Missing required property: interception");
+            validator.error.message.should.equal("Missing required property: interceptions");
         });
     });
 

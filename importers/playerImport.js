@@ -14,6 +14,7 @@ for (var i = 1; i <= pageCount; i++) {
             var json = JSON.parse(body);
 
             for (var j = 0; j < json.items.length; j++) {
+                // TODO: validate player import
                 serviceFirebase.Set(config.PlayerImportEndPoint, json.items[j].baseId, json.items[j]);
             }
         }

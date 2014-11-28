@@ -10,8 +10,8 @@ describe('Move Validation', function(){
         moveCard = {
             "_id" : 123,
             "name" : "short pass",
-            "player1Attribute" : "Passing",
-            "player2Attribute" : "Interception"
+            "player1Attribute" : "shortpassing",
+            "player2Attribute" : "interceptions"
         };
     });
 
