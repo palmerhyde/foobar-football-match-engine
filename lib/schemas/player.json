@@ -12,22 +12,47 @@
             "description": "The players first name.",
             "type": "string"
         },
-        "surname": {
-            "description": "The players surname.",
+        "lastName": {
+            "description": "The players last name.",
             "type": "string"
         },
         "position": {
             "description": "The players position",
             "type": "string", "enum": [ "Goalkeeper", "Defender", "Midfielder", "Attacker" ]
         },
-        "passing": {
+        "shortpassing": {
             "description": "The passing ability of a player",
             "type": "integer"
         },
-        "interception": {
+        "interceptions": {
             "description": "The interception ability of a player",
             "type": "integer"
         }
     },
-    "required": ["_id", "firstName", "surname", "position", "passing", "interception"]
+    "required": [
+                    "_id",
+                    "firstName",
+                    "lastName",
+                    "position",
+                    "crossing",
+                    "dribbling",
+                    "finishing",
+                    "gkdiving",
+                    "gkhandling",
+                    "gkpositioning",
+                    "gkreflexes",
+                    "heading",
+                    "interceptions",
+                    "longpassing",
+                    "longshots",
+                    "marking",
+                    "positioning",
+                    "slidingtackle",
+                    "shortpassing",
+                    "shotpower",
+                    "standingtackle",
+                    "strength",
+                    "vision",
+                    "volleys"
+                ]
 }

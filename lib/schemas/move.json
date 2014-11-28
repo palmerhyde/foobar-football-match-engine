@@ -14,11 +14,53 @@
     },
     "player1Attribute": {
         "description": "The attribute player 1 will use for this move",
-            "type": "string", "enum": [ "Passing", "Interception" ]
+            "type": "string", "enum": [
+                "crossing",
+                "dribbling",
+                "finishing",
+                "gkdiving",
+                "gkhandling",
+                "gkpositioning",
+                "gkreflexes",
+                "heading",
+                "interceptions",
+                "longpassing",
+                "longshots",
+                "marking",
+                "positioning",
+                "slidingtackle",
+                "shortpassing",
+                "shotpower",
+                "standingtackle",
+                "strength",
+                "vision",
+                "volleys"
+        ]
     },
         "player2Attribute": {
             "description": "The attribute player 2 will use for this move",
-            "type": "string", "enum": [ "Passing", "Interception" ]
+            "type": "string", "enum": [
+                "crossing",
+                "dribbling",
+                "finishing",
+                "gkdiving",
+                "gkhandling",
+                "gkpositioning",
+                "gkreflexes",
+                "heading",
+                "interceptions",
+                "longpassing",
+                "longshots",
+                "marking",
+                "positioning",
+                "slidingtackle",
+                "shortpassing",
+                "shotpower",
+                "standingtackle",
+                "strength",
+                "vision",
+                "volleys"
+            ]
         }
 },
     "required": ["_id", "name", "player1Attribute", "player2Attribute"]

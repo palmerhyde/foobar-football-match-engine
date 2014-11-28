@@ -9,26 +9,62 @@ describe('Move', function(){
         playerCard1 = {
             "_id" : 123,
             "firstName" : "John",
-            "surname" : "Terry",
+            "lastName" : "Terry",
             "position" : "Defender",
-            "passing" : 67,
-            "interception" : 45
+            "crossing" : 10,
+            "dribbling" : 10,
+            "finishing" : 10,
+            "gkdiving" : 10,
+            "gkhandling" :10,
+            "gkpositioning" : 10,
+            "gkreflexes" : 10,
+            "heading" : 10,
+            "interceptions" : 45,
+            "longpassing" : 10,
+            "longshots" : 10,
+            "marking" :10,
+            "positioning" : 10,
+            "shortpassing" : 67,
+            "slidingtackle" : 10,
+            "shotpower" : 10,
+            "standingtackle" : 10,
+            "strength": 10,
+            "vision" : 10,
+            "volleys" : 10
         };
 
         playerCard2 = {
             "_id" : 456,
             "firstName" : "Steve",
-            "surname" : "Gerrard",
+            "lastName" : "Gerrard",
             "position" : "Midfielder",
-            "passing" : 82,
-            "interception" : 43
+            "crossing" : 10,
+            "dribbling" : 10,
+            "finishing" : 10,
+            "gkdiving" : 10,
+            "gkhandling" :10,
+            "gkpositioning" : 10,
+            "gkreflexes" : 10,
+            "heading" : 10,
+            "interceptions" : 43,
+            "longpassing" : 10,
+            "longshots" : 10,
+            "marking" :10,
+            "positioning" : 10,
+            "shortpassing" : 82,
+            "slidingtackle" : 10,
+            "shotpower" : 10,
+            "standingtackle" : 10,
+            "strength": 10,
+            "vision" : 10,
+            "volleys" : 10
         };
 
         moveCard = {
             "_id" : 123,
             "name" : "short pass",
-            "player1Attribute" : "Passing",
-            "player2Attribute" : "Interception"
+            "player1Attribute" : "shortpassing",
+            "player2Attribute" : "interceptions"
         };
     })
 
