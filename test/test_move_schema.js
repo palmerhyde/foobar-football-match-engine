@@ -1,80 +1,82 @@
 var should = require("should");
 var schema = require("../lib/schemas/move");
-var validator = require("tv4");
+var joi = require("joi");
 
-var moveCard;
+
+var json;
 
 describe('Move Validation', function(){
 
     beforeEach(function(){
-        moveCard = {
-            "_id" : 123,
-            "name" : "short pass",
-            "player1Attribute" : "shortpassing",
-            "player2Attribute" : "interceptions"
-        };
+        var name = require.resolve('./testData/valid-moves');
+        if(name) {
+            delete require.cache[name];
+        }
+
+        var moves = require("./testData/valid-moves");
+        json = moves.ShortPassVsIntercept;
     });
 
-    describe("move with missing _id", function() {
+    describe("move without id", function() {
         it("should result in an error message", function(){
-            moveCard._id = undefined;
-            var result = validator.validate(moveCard, schema);
-            validator.error.message.should.equal("Missing required property: _id");
+            json.id = undefined;
+            var result = joi.validate(json, schema.move);
+            result.error.message.should.equal("child \"id\" fails because [\"id\" is required]");
         });
     });
 
-    describe("move with incorrect type _id", function() {
+    describe("move with incorrect type id", function() {
         it("should result in an error message", function(){
-            moveCard._id = "hello world";
-            var result = validator.validate(moveCard, schema);
-            validator.error.message.should.equal("invalid type: string (expected integer)");
+            json.id = 666;
+            var result = joi.validate(json, schema.move);
+            result.error.message.should.equal("child \"id\" fails because [\"id\" must be a string]");
         });
     });
 
-    describe("move with missing name", function() {
+    describe("player with missing name", function() {
         it("should result in an error message", function(){
-            moveCard.name = undefined;
-            var result = validator.validate(moveCard, schema);
-            validator.error.message.should.equal("Missing required property: name");
+            json.name = undefined;
+            var result = joi.validate(json, schema.move);
+            result.error.message.should.equal("child \"name\" fails because [\"name\" is required]");
         });
     });
 
     describe("move with missing player1Attribute", function() {
         it("should result in an error message", function(){
-            moveCard.player1Attribute = undefined;
-            var result = validator.validate(moveCard, schema);
-            validator.error.message.should.equal("Missing required property: player1Attribute");
+            json.player1Attribute = undefined;
+            var result = joi.validate(json, schema.move);
+            result.error.message.should.equal("child \"player1Attribute\" fails because [\"player1Attribute\" is required]");
         });
     });
 
     describe("move with invalid player1Attribute", function() {
         it("should result in a not valid attribute error", function(){
-            moveCard.player1Attribute = "Fishing";
-            var result = validator.validate(moveCard, schema);
-            validator.error.message.should.equal("No enum match for: \"Fishing\"");
+            json.player1Attribute = "scrum";
+            var result = joi.validate(json, schema.move);
+            result.error.message.should.equal("child \"player1Attribute\" fails because [\"player1Attribute\" must be one of [crossing, dribbling, finishing, gkdiving, gkhandling, gkpositioning, gkreflexes, heading, interceptions, longpassing, longshots, marking, positioning, shortpassing, slidingtackle, shotpower, standingtackle, strength, vision, volleys]]");
         });
     });
 
     describe("move with missing player2Attribute", function() {
         it("should result in an error message", function(){
-            moveCard.player2Attribute = undefined;
-            var result = validator.validate(moveCard, schema);
-            validator.error.message.should.equal("Missing required property: player2Attribute");
+            json.player2Attribute = undefined;
+            var result = joi.validate(json, schema.move);
+            result.error.message.should.equal("child \"player2Attribute\" fails because [\"player2Attribute\" is required]");
         });
     });
 
     describe("move with invalid player2Attribute", function() {
         it("should result in a not valid attribute error", function(){
-            moveCard.player2Attribute = "Fishing";
-            var result = validator.validate(moveCard, schema);
-            validator.error.message.should.equal("No enum match for: \"Fishing\"");
+            json.player2Attribute = "scrum";
+            var result = joi.validate(json, schema.move);
+            result.error.message.should.equal("child \"player2Attribute\" fails because [\"player2Attribute\" must be one of [crossing, dribbling, finishing, gkdiving, gkhandling, gkpositioning, gkreflexes, heading, interceptions, longpassing, longshots, marking, positioning, shortpassing, slidingtackle, shotpower, standingtackle, strength, vision, volleys]]");
         });
     });
 
     describe("valid move", function() {
         it("should validate", function(){
-            var result = validator.validate(moveCard, schema);
-            result.should.be.true;
+            var result = joi.validate(json, schema.move);
+            (result.error === null).should.be.true;
         });
     });
 });

@@ -1,64 +1,72 @@
 var should = require("should");
 var schema = require("../lib/schemas/user");
-var validator = require("tv4");
+var joi = require("joi");
 
 var json;
+
 
 describe('User Validation', function(){
 
     beforeEach(function(){
-        var name = require.resolve('./testData/validUser');
+        var name = require.resolve('./testData/valid-users');
         if(name) {
             delete require.cache[name];
         }
-        json = require("./testData/validUser");
+        json = require("./testData/valid-users").LiamMolloy;
     });
 
-    describe("user with missing _id", function() {
+    describe("user with missing id", function() {
         it("should result in an error message", function(){
-            json._id = undefined;
-            var result = validator.validate(json, schema);
-            validator.error.message.should.equal("Missing required property: _id");
+            json.id = undefined;
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"id\" fails because [\"id\" is required]");
         });
     });
 
-    describe("user with incorrect type _id", function() {
+    describe("user with incorrect type id", function() {
         it("should result in an error message", function(){
-            json._id = "hello world";
-            var result = validator.validate(json, schema);
-            validator.error.message.should.equal("invalid type: string (expected integer)");
+            json.id = 666;
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"id\" fails because [\"id\" must be a string]");
         });
     });
 
     describe("user with missing firstName", function() {
         it("should result in an error message", function(){
             json.firstName = undefined;
-            var result = validator.validate(json, schema);
-            validator.error.message.should.equal("Missing required property: firstName");
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"firstName\" fails because [\"firstName\" is required]");
         });
     });
 
     describe("user with missing surname", function() {
         it("should result in an error message", function(){
-            json.surname = undefined;
-            var result = validator.validate(json, schema);
-            validator.error.message.should.equal("Missing required property: surname");
+            json.lastName = undefined;
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"lastName\" fails because [\"lastName\" is required]");
         });
     });
 
-    // TODO: validate a valid email address in the schema test
     describe("player with missing email", function() {
         it("should result in an error message", function(){
             json.email = undefined;
-            var result = validator.validate(json, schema);
-            validator.error.message.should.equal("Missing required property: email");
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"email\" fails because [\"email\" is required]");
+        });
+    });
+
+    describe("player with invalid email", function() {
+        it("should result in an error message", function(){
+            json.email = "fakeemail";
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"email\" fails because [\"email\" must be a valid email]");
         });
     });
 
     describe("valid user", function() {
         it("should validate", function(){
-            var result = validator.validate(json, schema);
-            result.should.be.true;
+            var result = joi.validate(json, schema.schema);
+            (result.error === null).should.be.true;
         });
     });
 });

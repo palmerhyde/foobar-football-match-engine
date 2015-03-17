@@ -1,6 +1,6 @@
-{
-    "_id" : 1,
+exports.LiamMolloy = {
+    "id" : "1",
     "firstName" : "Liam",
-    "surname" : "Molloy",
+    "lastName" : "Molloy",
     "email" : "molloy@foobarfootball.com"
-}
+};
