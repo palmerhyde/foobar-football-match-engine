@@ -2,90 +2,83 @@ var should = require("should");
 var schema = require("../lib/schemas/match");
 var moveSchema = require("../lib/schemas/move");
 var userSchema = require("../lib/schemas/user");
-var validator = require("tv4");
+var joi = require("joi");
 
-var match;
+var json;
 
 describe('Match Validation', function(){
 
     beforeEach(function(){
-        var name = require.resolve('./testData/validMatch');
+        var name = require.resolve('./testData/valid-matches');
         if(name) {
             delete require.cache[name];
         }
-        match = require("./testData/validMatch");
-        validator.addSchema("move.json", moveSchema);
-        validator.addSchema("user.json", userSchema);
+
+        var matches = require("./testData/valid-matches");
+        json = matches.ChelseaVsArsenal;
     });
 
-    describe("match with missing _id", function() {
+    describe("match with missing id", function() {
         it("should result in an error message", function(){
-            match._id = undefined;
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("Missing required property: _id");
+            json.id = undefined;
+            var result = joi.validate(json, schema.match);
+            result.error.message.should.equal("child \"id\" fails because [\"id\" is required]");
         });
     });
 
-    describe("match with incorrect type _id", function() {
+    describe("match with incorrect type id", function() {
         it("should result in an error message", function(){
-            match._id = "1";
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("invalid type: string (expected integer)");
+            json.id = 666;
+            var result = joi.validate(json, schema.match);
+            result.error.message.should.equal("child \"id\" fails because [\"id\" must be a string]");
         });
     });
 
     describe("match with missing turn", function() {
         it("should result in an error message", function(){
-            match.turn = undefined;
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("Missing required property: turn");
+            json.turn = undefined;
+            var result = joi.validate(json, schema.match);
+            result.error.message.should.equal("child \"turn\" fails because [\"turn\" is required]");
         });
     });
 
     describe("match with incorrect type turn", function() {
         it("should result in an error message", function(){
-            match.turn = "1";
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("invalid type: string (expected integer)");
+            json.turn = "six";
+            var result = joi.validate(json, schema.match);
+            result.error.message.should.equal("child \"turn\" fails because [\"turn\" must be a number]");
         });
     });
 
     describe("match with missing currentTurnUserId", function() {
         it("should result in an error message", function(){
-            match.currentTurnUserId = undefined;
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("Missing required property: currentTurnUserId");
+            json.currentTurnUserId = undefined;
+            var result = joi.validate(json, schema.match);
+            result.error.message.should.equal("child \"currentTurnUserId\" fails because [\"currentTurnUserId\" is required]");
         });
     });
 
     describe("match with incorrect type currentTurnUserId", function() {
         it("should result in an error message", function(){
-            match.currentTurnUserId = "1";
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("invalid type: string (expected integer)");
+            json.currentTurnUserId = 666;
+            var result = joi.validate(json, schema.match);
+            result.error.message.should.equal("child \"currentTurnUserId\" fails because [\"currentTurnUserId\" must be a string]");
         });
     });
 
     describe("match with missing moves", function() {
         it("should result in an error message", function(){
-            match.moves = undefined;
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("Missing required property: moves");
+            json.moves = undefined;
+            var result = joi.validate(json, schema.match);
+            result.error.message.should.equal("child \"moves\" fails because [\"moves\" is required]");
         });
     });
 
-    describe("match with incorrect type moves", function() {
-        it("should result in an error message", function(){
-            match.moves = "Hello world";
-            var result = validator.validate(match, schema);
-            validator.error.message.should.equal("invalid type: string (expected array)");
-        });
-    });
 
     describe("valid match", function() {
         it("should validate", function(){
-            var result = validator.validate(match, schema);
-            result.should.be.true;
+            var result = joi.validate(json, schema.match);
+            (result.error === null).should.be.true;
         });
     });
 });
