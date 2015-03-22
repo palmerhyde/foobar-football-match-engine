@@ -20,8 +20,8 @@ describe('Move', function(){
         var moves = require("./testData/valid-moves");
         var players = require("./testData/valid-players");
         moveCard = moves.ShortPassVsIntercept;
-        playerCard1 = players.GeorgeBest;
-        playerCard2 = players.EricCantona;
+        playerCard1 = players.Zola_1201;
+        playerCard2 = players.Messi_158023;
     });
 
     describe(".play with empty player1 param", function() {

@@ -1,19 +1,19 @@
 var should = require("should");
-var schema = require("../lib/schemas/match-squad-schema");
+var schema = require("../lib/schemas/squad");
 var joi = require("joi");
 
 var json;
 var players = require("./testData/valid-players");
 
-describe('Match Squad Schema Validation', function(){
+describe('Squad Schema Validation', function(){
 
     beforeEach(function(){
-        var name = require.resolve('./testData/valid-match-squad');
+        var name = require.resolve('./testData/valid-squad');
         if(name) {
             delete require.cache[name];
         }
 
-        json = require("./testData/valid-match-squad").TestSquad1;
+        json = require("./testData/valid-squad").TestSquad1;
     });
 
     describe("a missing name", function() {
@@ -90,7 +90,7 @@ describe('Match Squad Schema Validation', function(){
 
     describe("has greater than 3 subs", function() {
         it("should result in an error message", function(){
-            json.substitutions.push(players.GeorgeBest);
+            json.substitutions.push(players.Boateng_183907);
 
             var result = joi.validate(json, schema.matchSquad());
             result.error.message.should.equal("child \"substitutions\" fails because [\"substitutions\" must contain less than or equal to 3 items]");
