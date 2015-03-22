@@ -6,17 +6,17 @@ exports.LiamMolloy = {
     "lastName" : "Molloy",
     "email" : "molloy@foobarfootball.com",
     "squad" : [
-        players.DavidSeamen,
-        players.EricCantona,
-        players.GeorgeBest,
-        players.DavidSeamen,
-        players.EricCantona,
-        players.GeorgeBest,
-        players.DavidSeamen,
-        players.EricCantona,
-        players.GeorgeBest,
-        players.DavidSeamen,
-        players.EricCantona
+        players.Agüero_153079,
+        players.AlarcónSuárez_197781,
+        players.AlonsoOlano_45197,
+        players.Bale_173731,
+        players.Beckenbauer_168473,
+        players.Benzema_165153,
+        players.Bergkamp_4000,
+        players.Zola_1201,
+        players.Lineker_214267,
+        players.Cannavaro_1183,
+        players.ButragueñoSantos_191695
     ]
 };
 
@@ -26,16 +26,16 @@ exports.PalmerMolloy = {
     "lastName" : "Molloy",
     "email" : "palmer@foobarfootball.com",
     "squad" : [
-        players.DavidSeamen,
-        players.EricCantona,
-        players.GeorgeBest,
-        players.DavidSeamen,
-        players.EricCantona,
-        players.GeorgeBest,
-        players.DavidSeamen,
-        players.EricCantona,
-        players.GeorgeBest,
-        players.DavidSeamen,
-        players.EricCantona
+        players.Agüero_153079,
+        players.AlarcónSuárez_197781,
+        players.AlonsoOlano_45197,
+        players.Bale_173731,
+        players.Beckenbauer_168473,
+        players.Benzema_165153,
+        players.Bergkamp_4000,
+        players.Zola_1201,
+        players.Lineker_214267,
+        players.Cannavaro_1183,
+        players.ButragueñoSantos_191695
     ]
 };

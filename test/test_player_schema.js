@@ -12,7 +12,7 @@ describe('Player Validation', function(){
             delete require.cache[name];
         }
 
-        json = require("./testData/valid-players").GeorgeBest;
+        json = require("./testData/valid-players").Beckenbauer_168473;
     });
 
     describe("player without id", function() {
@@ -59,7 +59,7 @@ describe('Player Validation', function(){
         it("should result in a not valid position error", function(){
             json.position = "scrum";
             var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"position\" fails because [\"position\" must be one of [Goalkeeper, Defender, Midfielder, Attacker]]");
+            result.error.message.should.equal("child \"position\" fails because [\"position\" must be one of [Goalkeeper, Defender, Midfielder, Attacker, GK, LB, CB, RB, LDM, CDM, RDM, LM, CM, RM, LAM, CAM, RAM, LW, RW, ST, CF]]");
         });
     });
 
