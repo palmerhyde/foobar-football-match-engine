@@ -63,6 +63,22 @@ describe('User Validation', function(){
         });
     });
 
+    describe("user with missing squad", function() {
+        it("should result in an error message", function(){
+            json.squad = undefined;
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"squad\" fails because [\"squad\" is required]");
+        });
+    });
+
+    describe("user with less than 11 players in squad", function() {
+        it("should result in an error message", function(){
+            json.squad = [];
+            var result = joi.validate(json, schema.schema);
+            result.error.message.should.equal("child \"squad\" fails because [\"squad\" must contain 11 items]");
+        });
+    });
+
     describe("valid user", function() {
         it("should validate", function(){
             var result = joi.validate(json, schema.schema);

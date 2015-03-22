@@ -18,7 +18,7 @@ describe('Match Validation', function(){
         json = matches.ChelseaVsArsenal;
     });
 
-    describe("match with missing id", function() {
+    describe("user with missing id", function() {
         it("should result in an error message", function(){
             json.id = undefined;
             var result = joi.validate(json, schema.match);
@@ -26,7 +26,7 @@ describe('Match Validation', function(){
         });
     });
 
-    describe("match with incorrect type id", function() {
+    describe("user with incorrect type id", function() {
         it("should result in an error message", function(){
             json.id = 666;
             var result = joi.validate(json, schema.match);
@@ -34,7 +34,7 @@ describe('Match Validation', function(){
         });
     });
 
-    describe("match with missing turn", function() {
+    describe("user with missing turn", function() {
         it("should result in an error message", function(){
             json.turn = undefined;
             var result = joi.validate(json, schema.match);
@@ -42,7 +42,7 @@ describe('Match Validation', function(){
         });
     });
 
-    describe("match with incorrect type turn", function() {
+    describe("user with incorrect type turn", function() {
         it("should result in an error message", function(){
             json.turn = "six";
             var result = joi.validate(json, schema.match);
@@ -50,7 +50,7 @@ describe('Match Validation', function(){
         });
     });
 
-    describe("match with missing currentTurnUserId", function() {
+    describe("user with missing currentTurnUserId", function() {
         it("should result in an error message", function(){
             json.currentTurnUserId = undefined;
             var result = joi.validate(json, schema.match);
@@ -58,7 +58,7 @@ describe('Match Validation', function(){
         });
     });
 
-    describe("match with incorrect type currentTurnUserId", function() {
+    describe("user with incorrect type currentTurnUserId", function() {
         it("should result in an error message", function(){
             json.currentTurnUserId = 666;
             var result = joi.validate(json, schema.match);
@@ -73,7 +73,6 @@ describe('Match Validation', function(){
             result.error.message.should.equal("child \"moves\" fails because [\"moves\" is required]");
         });
     });
-
 
     describe("valid match", function() {
         it("should validate", function(){
