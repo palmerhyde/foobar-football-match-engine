@@ -25,8 +25,9 @@ for (var i = 1; i <= pageCount; i++) {
                 // serviceFirebase.Set(config.PlayerImportEndPoint, json.items[j].baseId, json.items[j]);
                 var player = {};
                 player.id = json.items[j].baseId.toString();
-                player.firstName = json.items[j].firstName;
+                player.name = json.items[j].firstName + " " + json.items[j].lastName;
                 player.lastName = json.items[j].lastName;
+                player.commonName = json.items[j].commonName;
                 player.position = json.items[j].position;
                 player.crossing = json.items[j].crossing;
                 player.dribbling = json.items[j].dribbling;
@@ -48,6 +49,9 @@ for (var i = 1; i <= pageCount; i++) {
                 player.strength = json.items[j].strength;
                 player.vision = json.items[j].vision;
                 player.volleys = json.items[j].volleys;
+                player.imageUrl = json.items[j].headshotImgUrl;
+                player.clubImageUrl = json.items[j].club.imgUrl;
+                player.nationImageUrl = json.items[j].nation.imgUrl;
 
                 var name = player.lastName + "_" + player.id;
                 name = name.replace(" ", "");
