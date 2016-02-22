@@ -1,24 +1,24 @@
 {
-    "name": "foobar-football-match-engine",
-    "description": "FooBar Football game rules engine",
-    "version": "0.0.1",
-    "private": true,
-    "main": "server.js",
-    "dependencies": {
-        "firebase": "*",
-        "q" : "*",
-        "tv4" : "*",
-        "request" : "*",
-        "joi" : "*"
-    },
-    "devDependencies": {
-        "should": "*",
-        "istanbul" : "*",
-        "mocha-istanbul": "*",
-        "istanbul" : "*",
-        "mocha": "*"
-    },
-    "scripts" : {
-        "test" : "mocha --reporter nyan; istanbul cover node_modules/mocha/bin/_mocha -- --recursive"
-    }
+  "name": "foobar-football-match-engine",
+  "description": "FooBar Football game rules engine",
+  "version": "0.0.1",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+    "firebase": "^2.4.0",
+    "firebase-queue": "^1.2.1",
+    "joi": "*",
+    "q": "*",
+    "request": "*",
+    "tv4": "*"
+  },
+  "devDependencies": {
+    "should": "*",
+    "istanbul": "*",
+    "mocha-istanbul": "*",
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha --reporter nyan; istanbul cover node_modules/mocha/bin/_mocha -- --recursive"
+  }
 }
