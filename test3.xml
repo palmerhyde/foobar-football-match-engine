@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite hostname="PRDSLHLCFAJNK10" name="EndToEndChrome" tests="28" failures="1" timestamp="13 May 2016 14:01:21 GMT" time="651.784" errors="0">
+<testsuite hostname="PRDSLHLCFAJNK10" name="EndToEndChrome" tests="2" failures="1" timestamp="13 May 2016 14:01:21 GMT" time="651.784" errors="0">
 <testcase classname="JUnitXmlReporter.constructor" name="should default path to an empty string" time="0.006">
 <failure message="test failure">Assertion failed</failure>
 </testcase>
