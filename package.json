@@ -6,7 +6,6 @@
   "main": "server.js",
   "dependencies": {
     "firebase": "^2.4.0",
-    "firebase-queue": "^1.2.1",
     "joi": "*",
     "q": "*",
     "request": "*",
