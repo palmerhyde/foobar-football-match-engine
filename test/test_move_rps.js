@@ -5,7 +5,7 @@ var joi = require("joi");
 var playerCard1, playerCard2, moveCard;
 
 // TODO: rename reveal
-describe('Move', function(){
+describe('Move RPS', function(){
 
     beforeEach(function(){
         var module1 = require.resolve('./testData/valid-moves');
@@ -169,7 +169,7 @@ describe('Move', function(){
     });
 
     describe("player 1 COUNTER vs player 2 DEFENCE", function() {
-        it("should result in player2 winning", function(){
+        it("should result in a draw", function(){
             playerCard1.action = "COUNTER";
             playerCard2.action = "DEFENCE";
             var result = move(playerCard1, playerCard2, moveCard);
@@ -187,7 +187,7 @@ describe('Move', function(){
     });
 
     describe("player 1 COUNTER vs player 2 COUNTER", function() {
-        it("should result in player2 winning", function(){
+        it("should result in a draw", function(){
             playerCard1.action = "COUNTER";
             playerCard2.action = "COUNTER";
             var result = move(playerCard1, playerCard2, moveCard);

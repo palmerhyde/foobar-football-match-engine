@@ -18,62 +18,62 @@ describe('User Validation', function(){
     describe("user with missing id", function() {
         it("should result in an error message", function(){
             json.id = undefined;
-            var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"id\" fails because [\"id\" is required]");
+            var result = schema.schema.validate(json);
+            result.error.message.should.equal("\"id\" is required");
         });
     });
 
     describe("user with incorrect type id", function() {
         it("should result in an error message", function(){
             json.id = 666;
-            var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"id\" fails because [\"id\" must be a string]");
+            var result = schema.schema.validate(json);
+            result.error.message.should.equal("\"id\" must be a string");
         });
     });
 
     describe("user with missing firstName", function() {
         it("should result in an error message", function(){
             json.firstName = undefined;
-            var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"firstName\" fails because [\"firstName\" is required]");
+            var result = schema.schema.validate(json);
+            result.error.message.should.equal("\"firstName\" is required");
         });
     });
 
     describe("user with missing surname", function() {
         it("should result in an error message", function(){
             json.lastName = undefined;
-            var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"lastName\" fails because [\"lastName\" is required]");
+            var result = schema.schema.validate(json);
+            result.error.message.should.equal("\"lastName\" is required");
         });
     });
 
     describe("player with missing email", function() {
         it("should result in an error message", function(){
             json.email = undefined;
-            var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"email\" fails because [\"email\" is required]");
+            var result = schema.schema.validate(json);
+            result.error.message.should.equal("\"email\" is required");
         });
     });
 
     describe("player with invalid email", function() {
         it("should result in an error message", function(){
             json.email = "fakeemail";
-            var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"email\" fails because [\"email\" must be a valid email]");
+            var result = schema.schema.validate(json);
+            result.error.message.should.equal("\"email\" must be a valid email");
         });
     });
 
     describe("user with missing squad", function() {
         it("should result in an error message", function(){
             json.squad = undefined;
-            var result = joi.validate(json, schema.schema);
-            result.error.message.should.equal("child \"squad\" fails because [\"squad\" is required]");
+            var result = schema.schema.validate(json);
+            result.error.message.should.equal("\"squad\" is required");
         });
     });
 
     describe("valid user", function() {
         it("should validate", function(){
-            var result = joi.validate(json, schema.schema);
+            var result = schema.schema.validate(json);
             (result.error === null).should.be.true;
         });
     });

@@ -8,3 +8,14 @@ FooBar Football is a CCG / LCG card game based upon football. Inspired by Magic 
 
 Read more at the WIKI.
 https://github.com/palmerhyde/FooBar-Football-Match-Engine/wiki
+
+## Development
+
+### Testing
+```
+npm test
+```
+
+* Joi for schema validation
+* testData
+* Mocha and Istanbal for test coverage

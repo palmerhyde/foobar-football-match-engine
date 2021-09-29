@@ -32,3 +32,4 @@ node_modules
 # Web Storm config
 .idea
 projectFilesBackup
+.vscode/launch.json
