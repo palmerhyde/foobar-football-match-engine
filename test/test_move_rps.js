@@ -4,6 +4,7 @@ var joi = require("joi");
 
 var playerCard1, playerCard2, moveCard;
 
+// TODO: rename reveal
 describe('Move', function(){
 
     beforeEach(function(){
