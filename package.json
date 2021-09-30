@@ -11,13 +11,13 @@
     "request": "*"
   },
   "devDependencies": {
-    "should": "*",
     "istanbul": "*",
+    "mocha": "*",
     "mocha-istanbul": "*",
-    "mocha": "*"
+    "should": "*"
   },
   "scripts": {
     "coverage": "mocha --reporter nyan; istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
-    "test": "./node_modules/mocha/bin/_mocha --reporter nyan"
+    "test": "./node_modules/mocha/bin/_mocha"
   }
 }
