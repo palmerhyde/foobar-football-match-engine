@@ -34,3 +34,5 @@ node_modules
 projectFilesBackup
 .vscode/launch.json
 .keys/firebase-foobarfootball-firebase-admin-sdk.json
+lib/.env
+.env
