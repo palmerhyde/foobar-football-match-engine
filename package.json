@@ -5,11 +5,9 @@
   "private": true,
   "main": "server.js",
   "dependencies": {
-    "firebase": "^2.4.0",
+    "firebase-admin": "^9.12.0",
     "joi": "*",
-    "q": "*",
-    "request": "*",
-    "tv4": "*"
+    "request": "*"
   },
   "devDependencies": {
     "should": "*",
@@ -18,6 +16,7 @@
     "mocha": "*"
   },
   "scripts": {
-    "test": "mocha --reporter nyan; istanbul cover node_modules/mocha/bin/_mocha -- --recursive"
+    "coverage": "mocha --reporter nyan; istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
+    "test" : "./node_modules/mocha/bin/_mocha --reporter nyan"
   }
 }

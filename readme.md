@@ -19,3 +19,11 @@ npm test
 * Joi for schema validation
 * testData
 * Mocha and Istanbal for test coverage
+
+### Firebase
+* [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
+* GOOGLE_APPLICATION_CREDENTIALS Environment variable
+* reference - turn
+* reference - matchview
+* reference - matchlistener
+* reference - match

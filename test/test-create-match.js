@@ -12,8 +12,6 @@ describe('Match', function(){
     describe("createMatch", function() {
         it("should return a valid result", function(){
             var result = match.CreateMatch();
-            console.log(result.chanceCount);
-            console.log(JSON.stringify(result.chances));
         });
     });
 });

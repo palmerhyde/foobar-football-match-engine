@@ -33,3 +33,4 @@ node_modules
 .idea
 projectFilesBackup
 .vscode/launch.json
+.keys/firebase-foobarfootball-firebase-admin-sdk.json
