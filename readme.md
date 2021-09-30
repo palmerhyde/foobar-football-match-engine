@@ -22,8 +22,10 @@ npm test
 
 ### Firebase
 * [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
-* GOOGLE_APPLICATION_CREDENTIALS Environment variable, path to the key/cert
 * reference - turn
 * reference - matchview
 * reference - matchlistener
 * reference - match 
+
+### Environment Variables
+dotenv is used to set environment variables at startup. Ensure you add a .env file to the root of the project. Take a look at .env.example for a list of environment variables you need to set.
