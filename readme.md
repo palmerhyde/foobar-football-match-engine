@@ -22,8 +22,8 @@ npm test
 
 ### Firebase
 * [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
-* GOOGLE_APPLICATION_CREDENTIALS Environment variable
+* GOOGLE_APPLICATION_CREDENTIALS Environment variable, path to the key/cert
 * reference - turn
 * reference - matchview
 * reference - matchlistener
-* reference - match
+* reference - match 

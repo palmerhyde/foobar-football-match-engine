@@ -5,6 +5,7 @@
   "private": true,
   "main": "server.js",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "firebase-admin": "^9.12.0",
     "joi": "*",
     "request": "*"
@@ -17,6 +18,6 @@
   },
   "scripts": {
     "coverage": "mocha --reporter nyan; istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
-    "test" : "./node_modules/mocha/bin/_mocha --reporter nyan"
+    "test": "./node_modules/mocha/bin/_mocha --reporter nyan"
   }
 }
