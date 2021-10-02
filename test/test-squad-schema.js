@@ -40,59 +40,35 @@ describe('Squad Schema Validation', function(){
         });
     });
 
-    describe("a missing pitch1", function() {
+    describe("a missing defenders", function() {
         it("should result in an error message", function(){
-            json.pitch1 = undefined;
+            json.defenders = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"pitch1\" is required");
+            result.error.message.should.equal("\"defenders\" is required");
         });
     });
 
-    describe("a missing pitch2", function() {
+    describe("a missing midfielders", function() {
         it("should result in an error message", function(){
-            json.pitch2 = undefined;
+            json.midfielders = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"pitch2\" is required");
+            result.error.message.should.equal("\"midfielders\" is required");
         });
     });
 
-    describe("a missing pitch3", function() {
+    describe("a missing attackers", function() {
         it("should result in an error message", function(){
-            json.pitch3 = undefined;
+            json.attackers = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"pitch3\" is required");
+            result.error.message.should.equal("\"attackers\" is required");
         });
     });
 
-    describe("a missing pitch4", function() {
+    describe("a missing attackers", function() {
         it("should result in an error message", function(){
-            json.pitch4 = undefined;
+            json.attackers = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"pitch4\" is required");
-        });
-    });
-
-    describe("a missing pitch5", function() {
-        it("should result in an error message", function(){
-            json.pitch5 = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"pitch5\" is required");
-        });
-    });
-
-    describe("a missing substitutions", function() {
-        it("should result in an error message", function(){
-            json.substitutions = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"substitutions\" is required");
-        });
-    });
-
-    describe("has greater than 3 subs", function() {
-        it("should result in an error message", function(){
-            json.substitutions.push(players.Boateng_183907);
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"substitutions\" must contain less than or equal to 3 items");
+            result.error.message.should.equal("\"attackers\" is required");
         });
     });
 

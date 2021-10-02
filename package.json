@@ -7,6 +7,8 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "firebase-admin": "^9.12.0",
+    "graphql": "^15.6.0",
+    "graphql-request": "^3.5.0",
     "joi": "*",
     "request": "*"
   },
