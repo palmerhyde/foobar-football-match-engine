@@ -12,7 +12,7 @@ describe('Player Validation', function(){
             delete require.cache[name];
         }
 
-        json = require("./testData/valid-players").Beckenbauer_168473;
+        json = require("./testData/valid-players").ValidPlayer1;
     });
 
     describe("player without id", function() {
@@ -31,19 +31,11 @@ describe('Player Validation', function(){
         });
     });
 
-    describe("player with missing firstName", function() {
+    describe("player with missing name", function() {
         it("should result in an error message", function(){
-            json.firstName = undefined;
+            json.name = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"firstName\" is required");
-        });
-    });
-
-    describe("player with missing lastName", function() {
-        it("should result in an error message", function(){
-            json.lastName = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"lastName\" is required");
+            result.error.message.should.equal("\"name\" is required");
         });
     });
 
@@ -59,167 +51,119 @@ describe('Player Validation', function(){
         it("should result in a not valid position error", function(){
             json.position = "scrum";
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"position\" must be one of [Goalkeeper, Defender, Midfielder, Attacker, GK, LB, CB, RB, LDM, CDM, RDM, LM, CM, RM, LAM, CAM, RAM, LW, RW, ST, CF]");
+            result.error.message.should.equal("\"position\" must be one of [Goalkeeper, Defender, Midfielder, Forward]");
         });
     });
 
-    describe("player with missing shortpassing", function() {
-        it("should result in an error message", function(){
-            json.shortpassing = undefined;
+    describe("player with undefined assist", function() {
+        it("should result in a missing assist error", function(){
+            json.assist = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"shortpassing\" is required");
+            result.error.message.should.equal("\"assist\" is required");
         });
     });
 
-    describe("player with missing interception", function() {
-        it("should result in an error message", function(){
-            json.interceptions = undefined;
+    describe("player with undefined goalScorer", function() {
+        it("should result in a missing goalScorer error", function(){
+            json.goalScorer = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"interceptions\" is required");
+            result.error.message.should.equal("\"goalScorer\" is required");
         });
     });
 
-    describe("player with missing crossing", function() {
-        it("should result in an error message", function(){
-            json.crossing = undefined;
+    describe("player with undefined pictureUrl", function() {
+        it("should result in a missing pictureUrl error", function(){
+            json.pictureUrl = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"crossing\" is required");
+            result.error.message.should.equal("\"pictureUrl\" is required");
         });
     });
 
-    describe("player with missing dribbling", function() {
-        it("should result in an error message", function(){
-            json.dribbling = undefined;
+    describe("player with undefined primaryMove", function() {
+        it("should result in a missing primaryMove error", function(){
+            json.primaryMove = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"dribbling\" is required");
+            result.error.message.should.equal("\"primaryMove\" is required");
         });
     });
 
-    describe("player with missing finishing", function() {
-        it("should result in an error message", function(){
-            json.finishing = undefined;
+    describe("player with invalid primaryMove", function() {
+        it("should result in a not valid primaryMove error", function(){
+            json.primaryMove = "scrum";
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"finishing\" is required");
+            result.error.message.should.equal("\"primaryMove\" must be one of [A, P, D, C]");
         });
     });
 
-    describe("player with missing gkdiving", function() {
-        it("should result in an error message", function(){
-            json.gkdiving = undefined;
+    describe("player with undefined secondaryMove", function() {
+        it("should result in a missing secondaryMove error", function(){
+            json.secondaryMove = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"gkdiving\" is required");
+            result.error.message.should.equal("\"secondaryMove\" is required");
         });
     });
 
-    describe("player with missing gkhandling", function() {
-        it("should result in an error message", function(){
-            json.gkhandling = undefined;
+    describe("player with invalid secondaryMove", function() {
+        it("should result in a not valid secondaryMove error", function(){
+            json.secondaryMove = "scrum";
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"gkhandling\" is required");
+            result.error.message.should.equal("\"secondaryMove\" must be one of [A, P, D, C]");
         });
     });
 
-    describe("player with missing gkpositioning", function() {
-        it("should result in an error message", function(){
-            json.gkpositioning = undefined;
+    describe("player with undefined slug", function() {
+        it("should result in a missing slug error", function(){
+            json.slug = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"gkpositioning\" is required");
+            result.error.message.should.equal("\"slug\" is required");
         });
     });
 
-    describe("player with missing gkreflexes", function() {
-        it("should result in an error message", function(){
-            json.gkreflexes = undefined;
+    describe("player with undefined score", function() {
+        it("should result in a missing score error", function(){
+            json.score = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"gkreflexes\" is required");
+            result.error.message.should.equal("\"score\" is required");
         });
     });
 
-    describe("player with missing heading", function() {
-        it("should result in an error message", function(){
-            json.heading = undefined;
+    describe("player with  score < 0", function() {
+        it("should result in a out of range score error", function(){
+            json.score = -666.6;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"heading\" is required");
+            result.error.message.should.equal("\"score\" must be greater than or equal to 0");
         });
     });
 
-    describe("player with missing longpassing", function() {
-        it("should result in an error message", function(){
-            json.longpassing = undefined;
+    describe("player with  score > 100", function() {
+        it("should result in a out of range score error", function(){
+            json.score = 666.6;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"longpassing\" is required");
+            result.error.message.should.equal("\"score\" must be less than or equal to 100");
         });
     });
 
-    describe("player with missing longshots", function() {
-        it("should result in an error message", function(){
-            json.longshots = undefined;
+    describe("player with undefined teamScore", function() {
+        it("should result in a missing teamScore error", function(){
+            json.teamScore = undefined;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"longshots\" is required");
+            result.error.message.should.equal("\"teamScore\" is required");
         });
     });
 
-    describe("player with missing marking", function() {
-        it("should result in an error message", function(){
-            json.marking = undefined;
+    describe("player with  teamScore < 0", function() {
+        it("should result in a out of range teamScore error", function(){
+            json.teamScore = -666.6;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"marking\" is required");
+            result.error.message.should.equal("\"teamScore\" must be greater than or equal to 0");
         });
     });
 
-    describe("player with missing positioning", function() {
-        it("should result in an error message", function(){
-            json.positioning = undefined;
+    describe("player with  teamScore > 100", function() {
+        it("should result in a out of range teamScore error", function(){
+            json.teamScore = 666.6;
             var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"positioning\" is required");
-        });
-    });
-
-    describe("player with missing slidingtackle", function() {
-        it("should result in an error message", function(){
-            json.slidingtackle = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"slidingtackle\" is required");
-        });
-    });
-
-    describe("player with missing shotpower", function() {
-        it("should result in an error message", function(){
-            json.shotpower = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"shotpower\" is required");
-        });
-    });
-
-    describe("player with missing standingtackle", function() {
-        it("should result in an error message", function(){
-            json.standingtackle = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"standingtackle\" is required");
-        });
-    });
-
-    describe("player with missing strength", function() {
-        it("should result in an error message", function(){
-            json.strength = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"strength\" is required");
-        });
-    });
-
-    describe("player with missing vision", function() {
-        it("should result in an error message", function(){
-            json.vision = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"vision\" is required");
-        });
-    });
-
-    describe("player with missing volleys", function() {
-        it("should result in an error message", function(){
-            json.volleys = undefined;
-            var result = schema.schema().validate(json);
-            result.error.message.should.equal("\"volleys\" is required");
+            result.error.message.should.equal("\"teamScore\" must be less than or equal to 100");
         });
     });
 

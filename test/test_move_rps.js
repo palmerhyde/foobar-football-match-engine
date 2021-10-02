@@ -5,7 +5,7 @@ var joi = require("joi");
 var playerCard1, playerCard2, moveCard;
 
 // TODO: rename reveal
-describe('Move RPS', function(){
+describe.skip('Move RPS', function(){
 
     beforeEach(function(){
         var module1 = require.resolve('./testData/valid-moves');

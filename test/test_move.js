@@ -4,7 +4,7 @@ var joi = require("joi");
 
 var playerCard1, playerCard2, moveCard;
 
-describe('Move', function(){
+describe.skip('Move', function(){
 
     beforeEach(function(){
         var module1 = require.resolve('./testData/valid-moves');
