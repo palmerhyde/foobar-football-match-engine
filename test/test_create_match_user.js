@@ -18,8 +18,9 @@ describe('Graph Reducers', function(){
 
     describe("CreateMatchUser with 11 players of which one is a goalkeeper", function() {
         it("should return a valid user deck", function(){
-            var result = reducers.CreateMatchUser(json);
-            ValidateSquad(result).should.equal(true);
+            var squad = reducers.CreateMatchUser(json);
+            var result = ValidateSquad(squad);
+            should.not.exist(result.error)
         });
     });
 });
