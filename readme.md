@@ -22,10 +22,18 @@ npm test
 
 ### Firebase
 * [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
-* reference - turn
-* reference - matchview
-* reference - matchlistener
-* reference - match 
 
-### Environment Variables
+#### reference - turn
+The turn refernce is where game clients send their turn data. The game server listens to the turn reference, validates the turn and plays the turn.
+
+#### reference - match 
+The match reference is where matches in-progress are stored. For security reasons, only the game server can manipulate this reference
+
+### Sorare API
+* [GraphQL](https://github.com/sorare/api)
+* [GraphQL Playgound](https://api.sorare.com/graphql/playground)
+
+### Configuration
+
+#### Environment Variables
 dotenv is used to set environment variables at startup. Ensure you add a .env file to the root of the project. Take a look at .env.example for a list of environment variables you need to set.
