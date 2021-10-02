@@ -1,22 +1,145 @@
-var players = require("./valid-players");
-
-exports.TestSquad1 = {
-    "name" : "starting 11",
-    "goalkeeper" : players.Seaman_1,
-    "defenders" : [
-        players.Maldini_1109,
-        players.Agüero_153079,
-        players.Terry_13732,
-        players.Campbell_388
-    ],
-    "midfielders" : [
-        players.AlarcónSuárez_197781,
-        players.AlonsoOlano_45197,
-        players.Benatia_177509,
-        players.Robben_9014
-    ],
-    "attackers" : [
-        players.Shearer_51,
-        players.Sheringham_393
-    ]
-};
+exports.TestSquad1 = [
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Goalkeeper',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Defender',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Defender',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Defender',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Midfielder',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Midfielder',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Midfielder',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Forward',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Forward',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Forward',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    },
+    {
+        'id' : '666',
+        'assist' : false,
+        'goalScorer' : false,
+        'name' : 'BilliBoo',
+        'pictureUrl' : 'https://www.example.com',
+        'position' : 'Defender',
+        'primaryMove' : 'D',
+        'score' : 66.666,
+        'secondaryMove' : 'P',
+        'slug' : 'slug',
+        'teamScore' : '50.123'
+    }
+];
