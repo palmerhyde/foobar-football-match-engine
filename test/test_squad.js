@@ -1,5 +1,5 @@
 var should = require("should");
-var move = require("../lib/moves/move");
+var move = require("../lib/game/move");
 var { DetermineFormation } = require("../lib/schemas/graphReducers");
 
 

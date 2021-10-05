@@ -1,5 +1,5 @@
 var should = require("should");
-var move = require("../lib/moves/rps");
+var move = require("../lib/game/rps");
 var joi = require("joi");
 
 var playerCard1, playerCard2, moveCard;
