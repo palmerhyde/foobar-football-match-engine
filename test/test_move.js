@@ -1,81 +1,286 @@
 var should = require("should");
 var move = require("../lib/game/move");
-var joi = require("joi");
+var { RandomStrategy, PlayHeadsUpTurn  } = require("../lib/game/move");
 
-var playerCard1, playerCard2, moveCard;
+var json;
 
-describe.skip('Move', function(){
+describe('Move', function(){
 
     beforeEach(function(){
-        var module1 = require.resolve('./testData/valid-moves');
-        if(module1) {
-            delete require.cache[module1];
+        var name = require.resolve('./testData/valid-matches');
+        if(name) {
+            delete require.cache[name];
         }
 
-        var module2 = require.resolve('./testData/valid-players');
-        if(module2) {
-            delete require.cache[module2];
-        }
-
-        var moves = require("./testData/valid-moves");
-        var players = require("./testData/valid-players");
-        moveCard = moves.ShortPassVsIntercept;
-        playerCard1 = players.Zola_1201;
-        playerCard2 = players.Messi_158023;
+        var matches = require("./testData/valid-matches");
+        json = matches.ValidMatch;
     });
 
-    describe(".play with empty player1 param", function() {
-        it("should throw an exception for invalid player1 parameter", function(){
-            (function(){
-                playerCard1 = undefined;
-                move.Play(playerCard1, playerCard2, moveCard);
-            }).should.throw('player1 not valid');
+    describe('Opponent Strategy', function() {
+
+        describe("random away strategy", function() {
+            it("should result in a valid card and move selection", function(){
+                var strategy = RandomStrategy(json)
+                should.exist(strategy.card);
+                strategy.move.should.be.equalOneOf('A', 'D', 'C', 'P');
+                strategy.hand.length.should.equal(json.awayTeam.hand.length - 1);
+            });
         });
+
     });
 
-    describe(".play with empty player2 param", function() {
-        it("should throw an exception for invalid player2 parameter", function(){
-            (function(){
-                playerCard2 = undefined;
-                move.Play(playerCard1, playerCard2, moveCard);
-            }).should.throw('player2 not valid');
+    describe('Heads Up Turn', function() {
+
+        describe("player 1 ATTACK with a score greater than than player 2 ATTACK score", function() {
+            it("should result in player1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                player1Card.score = 99;
+                const player1Move = 'A';
+                const player2Card = json.awayTeam.hand[0];
+                player2Card.score = 50;
+                const player2Move = 'A';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player1");
+            });
         });
-    });
 
-    describe(".play with empty move param", function() {
-        it("should throw an exception for missing move parameter", function(){
-            (function(){
-                moveCard = undefined;
-                move.Play(playerCard1, playerCard2, moveCard);
-            }).should.throw('move not valid');
+        describe("player 1 ATTACK with a score less than than player 2 ATTACK score", function() {
+            it("should result in player2 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                player1Card.score = 6;
+                const player1Move = 'A';
+                const player2Card = json.awayTeam.hand[0];
+                player2Card.score = 50;
+                const player2Move = 'A';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player2");
+            });
         });
-    });
 
-    describe(".play with player 1 attribute greater than player 2 attribute", function() {
-        it("should result in player1 winning", function(){
-            playerCard1[moveCard.player1Attribute] = 10;
-            playerCard2[moveCard.player2Attribute] = 5;
-            var result = move.Play(playerCard1, playerCard2, moveCard);
-            result.should.equal("player1");
+        describe("player 1 ATTACK with a score equal to player 2 ATTACK score", function() {
+            it("should result in a draw", function(){
+                let player1Card = json.homeTeam.hand[0];
+                player1Card.score = 50;
+                const player1Move = 'A';
+                const player2Card = json.awayTeam.hand[0];
+                player2Card.score = 50;
+                const player2Move = 'A';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("draw");
+            });
         });
-    });
 
-    describe(".play with player 1 attribute less than than player 2 attribute", function() {
-        it("should result in player2 winning", function(){
-            playerCard1[moveCard.player1Attribute] = 4;
-            playerCard2[moveCard.player2Attribute] = 10;
-
-            var result = move.Play(playerCard1, playerCard2, moveCard);
-            result.should.equal("player2");
+        describe("player 1 POSSESSION with a team score greater than than player 2 POSSESSION team score", function() {
+            it("should result in player1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                player1Card.teamScore = 99;
+                const player1Move = 'P';
+                const player2Card = json.awayTeam.hand[0];
+                player2Card.teamScore = 50;
+                const player2Move = 'P';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player1");
+            });
         });
-    });
 
-    describe(".play with player 1 attribute equal to player 2 attribute", function() {
-        it("should result in a draw", function(){
-            playerCard1[moveCard.player1Attribute] = 10;
-            playerCard2[moveCard.player2Attribute] = 10;
-            var result = move.Play(playerCard1, playerCard2, moveCard);
-            result.should.equal("draw");
+        describe("player 1 POSSESSION with a team score less than than player 2 POSSESSION team score", function() {
+            it("should result in player2 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                player1Card.teamScore = 10;
+                const player1Move = 'P';
+                const player2Card = json.awayTeam.hand[0];
+                player2Card.teamScore = 50;
+                const player2Move = 'P';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player2");
+            });
+        });
+
+        describe("player 1 POSSESSION with a team score equal to player 2 POSSESSION team score", function() {
+            it("should result in a draw", function(){
+                let player1Card = json.homeTeam.hand[0];
+                player1Card.teamScore = 50;
+                const player1Move = 'P';
+                const player2Card = json.awayTeam.hand[0];
+                player2Card.teamScore = 50;
+                const player2Move = 'P';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("draw");
+            });
+        });
+
+        describe("player 1 ATTACK against player 2 POSSESSION", function() {
+            it("should result in player1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'A';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'P';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player1");
+            });
+        });
+
+        describe("player 1 ATTACK against player 2 DEFENCE", function() {
+            it("should result in player2 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'A';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'D';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player2");
+            });
+        });
+
+        describe("player 1 ATTACK against player 2 COUNTER", function() {
+            it("should result in player2 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'A';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'C';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player2");
+            });
+        });
+
+        describe("player 1 DEFENSE against player 2 ATTACK", function() {
+            it("should result in player1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'D';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'A';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player1");
+            });
+        });
+
+        describe("player 1 COUNTER against player 2 ATTACK", function() {
+            it("should result in player1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'C';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'A';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player1");
+            });
+        });
+
+        describe("player 1 DEFENSE against player 2 POSSESSION", function() {
+            it("should result in player2 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'D';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'P';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player2");
+            });
+        });
+
+        describe("player 1 COUNTER against player 2 POSSESSION", function() {
+            it("should result in player2 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'C';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'P';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player2");
+            });
+        });
+
+        describe("player 1 DEFENSE against player 2 DEFENSE", function() {
+            it("should result in a draw", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'D';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'D';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("draw");
+            });
+        });
+
+        describe("player 1 DEFENSE against player 2 COUNTER", function() {
+            it("should result in a draw", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'D';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'C';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("draw");
+            });
+        });
+
+        describe("player 1 COUNTER against player 2 DEFENSE", function() {
+            it("should result in a draw", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'C';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'D';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("draw");
+            });
+        });
+
+        describe("player 1 COUNTER against player 2 COUNTER", function() {
+            it("should result in a draw", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'C';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'C';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("draw");
+            });
+        });
+
+        describe("player 1 POSSESSION against player 2 ATTACK", function() {
+            it("should result in player 1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'P';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'A';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player2");
+            });
+        });
+
+        describe("player 1 POSSESSION against player 2 DEFENSE", function() {
+            it("should result in player 1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'P';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'D';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player1");
+            });
+        });
+
+        describe("player 1 POSSESSION against player 2 COUNTER", function() {
+            it("should result in player 1 winning", function(){
+                let player1Card = json.homeTeam.hand[0];
+                const player1Move = 'P';
+                const player2Card = json.awayTeam.hand[0];
+                const player2Move = 'C';
+                
+                const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
+                result.should.equal("player1");
+            });
         });
     });
 });

@@ -1,6 +1,5 @@
 var should = require("should");
 var reducers = require("../lib/schemas/graphReducers");
-var joi = require("joi");
 var { ValidateSquad } = require('../lib/schemas/validation')
 
 var json;

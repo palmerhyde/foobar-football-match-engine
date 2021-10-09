@@ -1,6 +1,5 @@
 var should = require("should");
 var schema = require("../lib/schemas/player");
-var joi = require("joi");
 
 var json;
 
