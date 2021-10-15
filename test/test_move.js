@@ -1,5 +1,4 @@
 var should = require("should");
-var move = require("../lib/game/move");
 var { RandomStrategy, PlayHeadsUpTurn  } = require("../lib/game/move");
 
 var json;
