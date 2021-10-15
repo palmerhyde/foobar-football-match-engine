@@ -14,6 +14,7 @@ https://github.com/palmerhyde/FooBar-Football-Match-Engine/wiki
 ### Testing
 ```
 npm test
+npm run coverage
 ```
 
 * Joi for schema validation
@@ -22,6 +23,9 @@ npm test
 
 ### Firebase
 * [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
+
+#### reference create-match
+The create match reference is where game clients send a request to create a new match. The ganme server listens to this reference, validates the request and creates a new match.
 
 #### reference - turn
 The turn refernce is where game clients send their turn data. The game server listens to the turn reference, validates the turn and plays the turn.
