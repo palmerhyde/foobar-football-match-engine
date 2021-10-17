@@ -1,6 +1,6 @@
 var should = require("should");
 var schema = require("../lib/schemas/match");
-var { CreateDeck, DealInitalHand } = require("../lib/game/deck");
+var { CreateDeck, DealInitalHand, DealTurn } = require("../lib/game/deck");
 
 var json;
 
@@ -47,6 +47,34 @@ describe('Deck', function(){
             uniqueArr.length.should.equal(hand.hand.length)
             hand.deck.length.should.equal(39)
             hand.hand.length.should.equal(5)
+        });
+    });
+
+    describe("Deal Turn", function() {
+        it("should result in 1 less card in the deck.", function(){
+            const cardPiles = {
+                'deck' : [...json.homeTeam.deck],
+                'hand' : [...json.homeTeam.hand],
+                'discard' : [],
+            }
+            
+            var newCardPiles = DealTurn(cardPiles);
+            newCardPiles.deck.length.should.equal(cardPiles.deck.length -1);
+            newCardPiles.hand.length.should.equal(cardPiles.hand.length +1);
+        });
+    });
+
+    describe("Deal Turn with 0 cards left in deck", function() {
+        it("should result in 0 cards being dealt.", function(){
+            json.homeTeam.discard = [];
+            const cardPiles = {
+                'deck' : [],
+                'hand' : [...json.homeTeam.hand],
+                'discard' : [...json.homeTeam.discard],
+            }
+            
+            var newCardPiles = DealTurn(cardPiles);
+            newCardPiles.hand.length.should.equal(cardPiles.hand.length);
         });
     });
 

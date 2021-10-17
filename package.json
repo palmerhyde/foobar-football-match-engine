@@ -15,13 +15,12 @@
     "rfdc": "^1.3.0"
   },
   "devDependencies": {
-    "istanbul": "*",
-    "mocha": "*",
-    "mocha-istanbul": "*",
-    "should": "*"
+    "mocha": "^9.1.3",
+    "nyc": "^15.1.0",
+    "should": "^13.2.3"
   },
   "scripts": {
-    "coverage": "mocha --reporter nyan; istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
-    "test": "./node_modules/mocha/bin/_mocha"
+    "test": "./node_modules/mocha/bin/_mocha",
+    "coverage": "nyc --reporter=html --reporter=text mocha"
   }
 }

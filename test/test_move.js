@@ -1,5 +1,5 @@
 var should = require("should");
-var { RandomStrategy, PlayHeadsUpTurn  } = require("../lib/game/move");
+var { RandomStrategy, PlayHeadsUpTurn, CheckForFinalWhistle, PlayTurn  } = require("../lib/game/move");
 
 var json;
 
@@ -19,13 +19,23 @@ describe('Move', function(){
 
         describe("random away strategy", function() {
             it("should result in a valid card and move selection", function(){
-                var strategy = RandomStrategy(json)
+                //const matchView = 
+                var strategy = RandomStrategy(json.awayTeam.hand)
                 should.exist(strategy.card);
                 strategy.move.should.be.equalOneOf('A', 'D', 'C', 'P');
-                strategy.hand.length.should.equal(json.awayTeam.hand.length - 1);
             });
         });
 
+    });
+
+    describe('Play Turn', function() {
+
+        describe("mumbo jumbo", function() {
+            it("should result in mumbo jumbo", function(){
+                const result = PlayTurn(json.homeTeam.hand[0], json.homeTeam.hand[0].primaryMove, json.awayTeam.hand[0], json.awayTeam.hand[0].primaryMove, json)
+                console.log(result)
+            });
+        });
     });
 
     describe('Heads Up Turn', function() {
@@ -279,6 +289,68 @@ describe('Move', function(){
                 
                 const result = PlayHeadsUpTurn(player1Card, player1Move, player2Card, player2Move);
                 result.should.equal("player1");
+            });
+        });
+    });
+
+    describe('Final Whistle', function() {
+
+        describe("Home team still has hitpoints and cards", function() {
+            it("should result in no final whistle", function(){
+                var match = CheckForFinalWhistle(json)
+                match.state.should.not.equal('FINAL_WHISTLE')
+            });
+        });
+
+        describe("Home team with no hitpoints remaining", function() {
+            it("should result in the final whistle", function(){
+                json.homeTeam.hitPoints = 0
+                const match = CheckForFinalWhistle(json)
+                match.state.should.equal('FINAL_WHISTLE')
+            });
+        });
+
+        describe("Away team with no hitpoints remaining", function() {
+            it("should result in the final whistle", function(){
+                json.awayTeam.hitPoints = 0;
+                const match = CheckForFinalWhistle(json);
+                match.state.should.equal('FINAL_WHISTLE');
+            });
+        });
+
+        describe("Home team with undefined cards remaining", function() {
+            it("should result in the final whistle", function(){
+                json.homeTeam.deck = undefined;
+                json.homeTeam.hand = undefined;
+                const match = CheckForFinalWhistle(json);
+                match.state.should.equal('FINAL_WHISTLE');
+            });
+        });
+
+        describe("Away team with undefined cards remaining", function() {
+            it("should result in the final whistle", function(){
+                json.awayTeam.deck = undefined;
+                json.awayTeam.hand = undefined;
+                const match = CheckForFinalWhistle(json);
+                match.state.should.equal('FINAL_WHISTLE');
+            });
+        });
+
+        describe("Home team with no cards remaining", function() {
+            it("should result in the final whistle", function(){
+                json.homeTeam.deck = undefined;
+                json.homeTeam.hand = undefined;
+                const match = CheckForFinalWhistle(json);
+                match.state.should.equal('FINAL_WHISTLE');
+            });
+        });
+
+        describe("Away team with no cards remaining", function() {
+            it("should result in the final whistle", function(){
+                json.awayTeam.deck = [];
+                json.awayTeam.hand = [];
+                const match = CheckForFinalWhistle(json);
+                match.state.should.equal('FINAL_WHISTLE');
             });
         });
     });
